@@ -1,0 +1,16 @@
+#!/bin/bash
+
+log=$HOME/Documents/log.txt
+lm=$(date -r $log +%d)
+now=$(date +%d)
+
+if [ $now -gt $lm ]; then
+    echo '' >> $log
+    echo $(date -I) $(date +%A) >> $log
+    echo '' >> $log
+fi
+
+echo $(date +%T) $(date +%z) >> $log
+echo '' >> $log
+echo '' >> $log
+gedit $log &

@@ -1,0 +1,5 @@
+[user]
+        name = Jacob Pledger
+        email = jacob@jacobpledger.com
+[credential]
+        helper = cache
