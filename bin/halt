@@ -1,4 +1,8 @@
 #!/bin/sh
-pushd $HOME/Development/projects/$1
-vagrant halt
-popd
+if [ $# -gt 0 ]; then
+	pushd $HOME/Development/Projects/$1
+	vagrant halt
+	popd
+else
+	vagrant halt
+fi
