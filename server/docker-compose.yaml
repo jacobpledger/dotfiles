@@ -1,0 +1,48 @@
+---
+version: '2'
+services:
+  web:
+    image: vanessa/web:latest
+    build:
+      context: .
+      dockerfile: ./docker/website/Dockerfile
+    hostname: web
+    container_name: web
+    networks:
+      - jotunheim
+    restart: always
+    command: python src/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/vanessa
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+      - rabbit
+  calibre:
+    image: vanessa/web:latest
+    build:
+      context: .
+      dockerfile: ./docker/calibre/Dockerfile
+    hostname: calibre
+    container_name: calibre
+    networks:
+      - jotunheim
+    restart: always
+    command: python src/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/vanessa
+      - redisrun:/var/run/redis
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+      - rabbit
+networks:
+  jotunheim:
+    driver: bridge
+volumes:
+  esdata1:
+    driver: local
