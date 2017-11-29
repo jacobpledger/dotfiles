@@ -2,26 +2,20 @@
 version: '2'
 services:
   web:
-    image: vanessa/web:latest
+    image: wordpress
     build:
       context: .
       dockerfile: ./docker/website/Dockerfile
-    hostname: web
-    container_name: web
+    hostname: website
+    container_name: website
     networks:
       - jotunheim
     restart: always
     command: python src/manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/vanessa
     ports:
       - "8000:8000"
-    depends_on:
-      - db
-      - redis
-      - rabbit
   calibre:
-    image: vanessa/web:latest
+    image: calibre
     build:
       context: .
       dockerfile: ./docker/calibre/Dockerfile
