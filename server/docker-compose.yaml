@@ -6,7 +6,7 @@ services:
      hostname: db
      container_name: db
      volumes:
-       - db_data:/var/lib/mysql
+       - /var/lib/mysql:/var/lib/mysql
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: somewordpress
@@ -22,6 +22,8 @@ services:
      ports:
        - "8000:80"
      restart: always
+     volumes:
+      - /home/wordpress/:.
      environment:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
@@ -37,8 +39,10 @@ services:
       - jotunheim
     restart: always
     volumes:
-      - .:/home/calibre/
+      - /home/calibre/:.
     ports:
-      - "8000:8000"
-volumes:
-    db_data:
+      - "8000:8000" 
+  nextcloud:
+    image: nextcloud
+  volumes:
+    /home/nextcloud/:/var/www/html/
