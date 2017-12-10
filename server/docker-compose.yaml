@@ -1,33 +1,33 @@
 ---
 version: '3'
 services:
-   db:
-     image: mysql:5.7
-     hostname: db
-     container_name: db
-     volumes:
-       - /var/lib/mysql:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: somewordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
-   wordpress:
-     image: wordpress:latest
-     hostname: wordpress
-     container_name: wordpress
-     depends_on:
+  db:
+    image: mysql:5.7
+    hostname: db
+    container_name: db
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+  wordpress:
+    image: wordpress:latest
+    hostname: wordpress
+    container_name: wordpress
+    depends_on:
        - db
-     ports:
+    ports:
        - "8000:80"
-     restart: always
-     volumes:
-      - /home/wordpress/:.
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
+    restart: always
+    volumes:
+      - ./data/wordpress/:.
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
   calibre:
     image: calibre
     hostname: calibre
@@ -35,14 +35,12 @@ services:
     build:
       context: .
       dockerfile: ./docker/calibre/Dockerfile
-    networks:
-      - jotunheim
     restart: always
     volumes:
-      - /home/calibre/:.
+      - ./data/calibre/:.
     ports:
       - "8000:8000" 
   nextcloud:
     image: nextcloud
-  volumes:
-    /home/nextcloud/:/var/www/html/
+    volumes:
+      - ./data/nextcloud/:/var/www/html/
