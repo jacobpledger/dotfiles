@@ -42,5 +42,6 @@ services:
       - "8000:8000" 
   nextcloud:
     image: nextcloud
+    restart: always
     volumes:
       - ./data/nextcloud/:/var/www/html/
