@@ -1,28 +1,47 @@
 ---
 version: '2'
 services:
-  nginx-proxy:
-    image: jwilder/nginx-proxy:alpine
+  nginx:
+    image: nginx
+    hostname: nginx
+    container_name: nginx
+    restart: always
     ports:
       - "80:80"
       - "443:443"
     volumes:
+      - "/etc/nginx/conf.d"
       - "/etc/nginx/vhost.d"
       - "/usr/share/nginx/html"
-      - "/var/run/docker.sock:/tmp/docker.sock:ro"
-      - "/etc/nginx/certs"
+      - "./certs:/etc/nginx/certs:ro"
     environment:
+      - DEFAULT_HOST=jacobpledger.com
       - VIRTUAL_PROTO=https
       - VIRTUAL_PORT=443
-      - DEFAULT_HOST=jacobpledger.com
-    labels:
-      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "jwilder/nginx-proxy"
+  nginx-gen:
+    image: jwilder/docker-gen
+    hostname: nginx-gen
+    container_name: nginx-gen
+    volumes:
+      - "./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+    volumes_from:
+      - "nginx"
   letsencrypt-nginx-proxy-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./certs:/etc/nginx/certs:rw"
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
     volumes_from:
-      - "nginx-proxy"
+      - "nginx-gen"
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx
+      - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
+      - VIRTUAL_HOST=jacobpledger.com,www.jacobpledger.com
+      - LETSENCRYPT_HOST=jacobpledger.com,www.jacobpledger.com
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
   db:
     image: mariadb
     hostname: db
@@ -31,8 +50,6 @@ services:
     env_file: .env
     volumes:
       - mariadb:/var/lib/mysql
-    # networks:
-    #   - thingvellir
     environment:
       - MYSQL_DATABASE=maria
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -48,8 +65,9 @@ services:
     depends_on:
        - db
     environment:
-      - VIRTUAL_HOST=jacobpledger.com
-      - LETSENCRYPT_HOST=jacobpledger.com, www.jacobpledger.com, books.jacobpledger.com
+      - VIRTUAL_HOST=nextcloud.jacobpledger.com
+      - LETSENCRYPT_HOST=jacobpledger.com, www.jacobpledger.com
+      # - LETSENCRYPT_TEST=true
       - MYSQL_HOST=db
       - MYSQL_DATABASE=maria
       - NEXTCLOUD_ADMIN_USER=admin
@@ -60,33 +78,22 @@ services:
       - data:/var/www/html/data
       - config:/var/www/html/config
       - apps:/var/www/html/apps
-  # wordpress:
-  #   image: wordpress:latest
-  #   hostname: wordpress
-  #   container_name: wordpress
-  #   depends_on:
-  #      - db
-  #   ports:
-  #      - "9000:80"
-  #   restart: always
-  #   environment:
-  #     WORDPRESS_DB_NAME: maria
-  #     WORDPRESS_DB_HOST: db:3306
-  #     WORDPRESS_DB_USER: jacob
-  #     WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-  # ghost:
-  #   image: ghost:alpine
-  #   hostname: ghost
-  #   container_name: ghost
-  #   restart: always
-  #   ports:
-  #     - "9080:2368"
-  #   environment:
-  #     database__client: mariadb
-  #     database__connection__host: db
-  #     database__connection__user: jacob
-  #     database__connection__password: ${MYSQL_PASSWORD}
-  #     database__connection__database: maria
+  ghost:
+    image: ghost:alpine
+    hostname: ghost
+    container_name: ghost
+    restart: always
+    ports:
+      - "9080:2368"
+    environment:
+      - database__client=sqlite3
+      - database__connection__host=db
+      - database__connection__user=jacob
+      - database__connection__password=${MYSQL_PASSWORD}
+      - database__connection__database=maria
+      - VIRTUAL_HOST=jacobpledger.com,www.jacobpledger.com
+      - LETSENCRYPT_HOST=jacobpledger.com,www.jacobpledger.com
+      # - LETSENCRYPT_TEST=true
   calibre:
     image: regueiro/calibre-server
     hostname: calibre
@@ -95,14 +102,14 @@ services:
     volumes:
       - calibre:/opt/calibre/library
     ports:
-      - "9001:8000" 
+      - "9001:8000"
     environment:
-      - VIRTUAL_HOST=jacobpledger.com, www.jacobpledger.com, books.jacobpledger.com
-      - LETSENCRYPT_HOST=jacobpledger.com, www.jacobpledger.com, books.jacobpledger.com
+      - VIRTUAL_HOST=books.jacobpledger.com
+      - LETSENCRYPT_HOST=books.jacobpledger.com
+      # - LETSENCRYPT_TEST=true
 volumes:
   data:
   config:
   apps:
   mariadb:
-  wordpress:
   calibre:
