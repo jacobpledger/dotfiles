@@ -1,6 +1,28 @@
 ---
 version: '2'
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "/etc/nginx/certs"
+    environment:
+      - VIRTUAL_PROTO=https
+      - VIRTUAL_PORT=443
+      - DEFAULT_HOST=jacobpledger.com
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "jwilder/nginx-proxy"
+  letsencrypt-nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    volumes_from:
+      - "nginx-proxy"
   db:
     image: mariadb
     hostname: db
@@ -26,6 +48,8 @@ services:
     depends_on:
        - db
     environment:
+      - VIRTUAL_HOST=jacobpledger.com
+      - LETSENCRYPT_HOST=jacobpledger.com, www.jacobpledger.com, books.jacobpledger.com
       - MYSQL_HOST=db
       - MYSQL_DATABASE=maria
       - NEXTCLOUD_ADMIN_USER=admin
@@ -36,20 +60,33 @@ services:
       - data:/var/www/html/data
       - config:/var/www/html/config
       - apps:/var/www/html/apps
-  wordpress:
-    image: wordpress:latest
-    hostname: wordpress
-    container_name: wordpress
-    depends_on:
-       - db
-    ports:
-       - "9000:80"
-    restart: always
-    environment:
-      WORDPRESS_DB_NAME: maria
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: jacob
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+  # wordpress:
+  #   image: wordpress:latest
+  #   hostname: wordpress
+  #   container_name: wordpress
+  #   depends_on:
+  #      - db
+  #   ports:
+  #      - "9000:80"
+  #   restart: always
+  #   environment:
+  #     WORDPRESS_DB_NAME: maria
+  #     WORDPRESS_DB_HOST: db:3306
+  #     WORDPRESS_DB_USER: jacob
+  #     WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+  # ghost:
+  #   image: ghost:alpine
+  #   hostname: ghost
+  #   container_name: ghost
+  #   restart: always
+  #   ports:
+  #     - "9080:2368"
+  #   environment:
+  #     database__client: mariadb
+  #     database__connection__host: db
+  #     database__connection__user: jacob
+  #     database__connection__password: ${MYSQL_PASSWORD}
+  #     database__connection__database: maria
   calibre:
     image: regueiro/calibre-server
     hostname: calibre
@@ -59,6 +96,9 @@ services:
       - calibre:/opt/calibre/library
     ports:
       - "9001:8000" 
+    environment:
+      - VIRTUAL_HOST=jacobpledger.com, www.jacobpledger.com, books.jacobpledger.com
+      - LETSENCRYPT_HOST=jacobpledger.com, www.jacobpledger.com, books.jacobpledger.com
 volumes:
   data:
   config:
