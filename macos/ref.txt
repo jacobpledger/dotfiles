@@ -57,12 +57,6 @@ This command applies to .iso, .img and .dmg images.
 hdiutil burn /path/to/image_file
 
 
-#Neovim
-
-Install the development version of this modern Vim drop-in alternative via Homebrew.
-
-brew install neovim/neovim/neovim
-
 Xcode
 Install Command Line Tools without Xcode
 
@@ -79,8 +73,7 @@ xcrun simctl delete unavailable
 # uninstall google updater
 #~/Library/Google/GoogleSoftwareUpdate/GoogleSoftwareUpdate.bundle/Contents/Resources/ksinstall --nuke
 
-# show mail attachments as icons:
-#defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
+
 
 # this enabled develop menu and web inspector, which I don't
 # care about, but it's an idea for syncing safari settings
@@ -101,18 +94,9 @@ xcrun simctl delete unavailable
 # Disable
 #sudo tmutil disablelocal
 
-
-
-#Compiling MacVim via Homebrew with all bells and whistles, including overriding system Vim.
-
-#brew install macvim --HEAD --with-cscope --with-lua --with-override-system-vim --with-luajit --with-python
-
 # Install Command Line Tools without Xcode
 
 # xcode-select --install
-
-
-
 
 #Awesome OS X Command Line
 
