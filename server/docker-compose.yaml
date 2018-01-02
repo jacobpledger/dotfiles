@@ -115,10 +115,11 @@ services:
     container_name: nextcloud
     restart: always
     env_file: .env
-    ports:
-      - "443"
+    # ports:
+    #   - "443"
     networks:
       - proxy
+      - default
     depends_on:
       - nginx
       - db
@@ -130,12 +131,13 @@ services:
       - MYSQL_USER=jacob
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - VIRTUAL_HOST=nextcloud.jacobpledger.com
-      - LETSENCRYPT_HOST=jacobpledger.com, www.jacobpledger.com
+      - LETSENCRYPT_HOST=nextcloud.jacobpledger.com
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       # - LETSENCRYPT_TEST=true
     volumes:
       - data:/var/www/html/data
-      - config:/var/www/html/config
+      # - config:/var/www/html/config
+      - ./nextcloud/config:/var/www/html/config/
       - apps:/var/www/html/apps
 volumes:
   data:
