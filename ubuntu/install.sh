@@ -20,15 +20,13 @@ gsettings set org.gnome.desktop.interface enable-animations "false"
 sudo apt install -y git
 
 # remove junk
-sudo apt remove -y aisleriot brasero-* cheese five-or-more four-in-a-row gnome-clocks gnome-dictionary gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sound-recorder gnome-sudoku hexchat hitori iagno inkscape libreoffice lightsoff simple-scan swell-foop tali xfburn xfce4-notes
+sudo apt remove -y aisleriot brasero-* cheese five-or-more four-in-a-row gnome-clocks gnome-dictionary gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sound-recorder gnome-sudoku hexchat hitori iagno inkscape libreoffice lightsoff simple-scan swell-foop tali thunderbird xfburn xfce4-notes
 
 # install snaps for trendyness
-sudo snap install cannonical-livepatch chromium docker libreoffice spotify
+sudo snap install cannonical-livepatch libreoffice nextcloud-client spotify
+sudo snap install --classic slack
 
 # add repos
-
-# papirus icon theme
-sudo add-apt-repository ppa:papirus/papirus
 
 # sublime-text
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -37,8 +35,7 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt update
 
 # install packages
-
-sudo apt install -y docker-compose evince firefox papirus-icon-theme sublime-text thunderbird tmux transmission vagrant vim virtualbox xrdp
+sudo apt install -y docker-compose evince firefox sublime-text tmux transmission vagrant vim virtualbox xrdp
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
