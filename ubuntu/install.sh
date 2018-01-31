@@ -1,6 +1,12 @@
 #!/bin/sh
 
 icon_dir="$HOME/.icons/"
+# 
+# Gnome 3
+# 
+# fix gnome's handling of wallpapers
+rm -r ~/.cache/gnome-control-center/backgrounds
+ln -s $HOME/Pictures/Wallpapers/ $HOME/.cache/gnome-control-center/backgrounds
 
 # write sane gnome 3 defaults
 
@@ -29,7 +35,6 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt update
 
 # install packages
-
 sudo apt install -y docker-compose evince firefox sublime-text tmux transmission vagrant vim virtualbox xrdp
 
 # rust
