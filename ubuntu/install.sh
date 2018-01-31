@@ -14,33 +14,23 @@ gsettings set org.gnome.desktop.interface enable-animations "false"
 sudo apt install -y git
 
 # remove junk
-sudo apt remove -y aisleriot brasero-* cheese five-or-more four-in-a-row gnome-clocks gnome-dictionary gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sound-recorder gnome-sudoku hexchat hitori iagno inkscape libreoffice lightsoff simple-scan swell-foop tali xfburn xfce4-notes
+sudo apt remove -y aisleriot brasero-* cheese five-or-more four-in-a-row gnome-clocks gnome-dictionary gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sound-recorder gnome-sudoku hexchat hitori iagno inkscape libreoffice lightsoff simple-scan swell-foop tali thunderbird xfburn xfce4-notes
 
 # install snaps for trendyness
-sudo snap install cannonical-livepatch chromium docker libreoffice
-
-# fix gnome's handling of wallpapers
-rm -r ~/.cache/gnome-control-center/backgrounds
-ln -s $HOME/Pictures/Wallpapers/ $HOME/.cache/gnome-control-center/backgrounds
+sudo snap install cannonical-livepatch libreoffice nextcloud-client spotify
+sudo snap install --classic slack
 
 # add repos
-
-# papirus icon theme
-sudo add-apt-repository ppa:papirus/papirus
 
 # sublime-text
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
-# spotify
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 0DF731E45CE24F27EEEB1450EFDC8610341D9410
-echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-
 sudo apt update
 
 # install packages
 
-sudo apt install -y docker-compose evince firefox papirus-icon-theme spotify-client sublime-text thunderbird tmux transmission vagrant vim virtualbox xrdp
+sudo apt install -y docker-compose evince firefox sublime-text tmux transmission vagrant vim virtualbox xrdp
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
