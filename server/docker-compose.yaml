@@ -137,11 +137,10 @@ services:
     volumes:
       - data:/var/www/html/data
       # - config:/var/www/html/config
-      - ./nextcloud/config:/var/www/html/config/
+      - ./nextcloud/config/:/var/www/html/config/
       - apps:/var/www/html/apps
 volumes:
   data:
-  config:
   apps:
   mariadb:
   calibre:
