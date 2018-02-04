@@ -183,6 +183,6 @@ defaults write NSGlobalDomain "AppleEnableMenuBarTransparency" -bool false
 # homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install tmux
-brew cask install calibre firefox nextcloud sublime-text textmate tunnelblick
+brew cask install calibre firefox nextcloud spotify sublime-text textmate tunnelblick
 
 mkdir $HOME/Development
