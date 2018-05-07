@@ -35,8 +35,10 @@ sudo apt remove -y \
 	xfce4-notes
 
 # install snaps for trendyness
-sudo snap install cannonical-livepatch
+sudo snap install canonical-livepatch
 sudo snap install --classic slack
+sudo snap install docker
+sudo snap install keepassxc
 
 # add repos
 
@@ -47,44 +49,26 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 # nextcloud
 sudo add-apt-repository ppa:nextcloud-devs/client
 
-# docker
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-
 # numix theme and icons
 sudo add-apt-repository ppa:numix/ppa
 
 sudo apt update
 
 # install packages
-sudo apt install -y \
-	docker-ce \
-	docker-compose \
-	evince \
-	evolution \
-	evolution-ews \
-	firefox \
-	mpv \
-	nextcloud-client \
-	numix-gtk-theme \
-	numix-icon-theme-circle\
-	plank \
-	sublime-text \
-	tmux \
-	transmission \
-	vagrant \
-	vim \
-	virtualbox
+
+# install separately so failures don't cascade
+
+# sudo apt install -y evolution
+# sudo apt install -y evolution-ews
+#sudo apt install -y firefox
+sudo apt install -y nextcloud-client
+sudo apt install -y numix-gtk-theme
+sudo apt install -y numix-icon-theme-circle
+sudo apt install -y plank
+sudo apt install -y sublime-text
+sudo apt install -y tmux
+sudo apt install -y transmission
+sudo apt install -y vim
 
 sudo apt autoremove
 
