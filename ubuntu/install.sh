@@ -61,10 +61,11 @@ sudo apt update
 # sudo apt install -y evolution
 # sudo apt install -y evolution-ews
 #sudo apt install -y firefox
+sudo apt install -y emacs
+sudo apt install -y htop
 sudo apt install -y nextcloud-client
 sudo apt install -y numix-gtk-theme
 sudo apt install -y numix-icon-theme-circle
-sudo apt install -y plank
 sudo apt install -y sublime-text
 sudo apt install -y tmux
 sudo apt install -y transmission
@@ -74,10 +75,6 @@ sudo apt autoremove
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
-
-# customization
-mkdir -p $HOME/Development/Workflow
-git clone https://github.com/LinxGem33/Plank-Themes.git $HOME/Development/Workflow/
 
 cd script
 ./bootstrap

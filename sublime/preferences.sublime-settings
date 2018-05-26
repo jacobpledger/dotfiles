@@ -11,11 +11,12 @@
 	],
 	"rulers":
 	[
-		80,
+		72,
+		79,
 		100
 	],
 	"scroll_past_end": false,
 	"show_encoding": true,
-	"folder_exclude_patterns": ["/home/jacob/Development/Projects/Vanessa/src/docker-media/*",],
+	"folder_exclude_patterns": ["*docker-media*",],
 	"theme": "Adaptive.sublime-theme"
 }
