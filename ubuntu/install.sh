@@ -70,11 +70,19 @@ sudo apt install -y apt-transport-https # for sublime
 sudo apt install -y evolution
 sudo apt install -y evolution-ews
 #sudo apt install -y firefox
+<<<<<<< HEAD
 sudo apt install -y numix-gtk-theme
 sudo apt install -y numix-icon-theme-circle
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server 
 sudo apt install -y plank
+=======
+sudo apt install -y emacs
+sudo apt install -y htop
+sudo apt install -y nextcloud-client
+sudo apt install -y numix-gtk-theme
+sudo apt install -y numix-icon-theme-circle
+>>>>>>> c57d7547c146649fb70608d2c85d9eadc7b6fc72
 sudo apt install -y sublime-text
 sudo apt install -y tmux
 sudo apt install -y transmission
@@ -84,12 +92,6 @@ sudo apt autoremove
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
-
-# ******************************************************************************
-# Customization
-# ******************************************************************************
-mkdir -p $HOME/Development/Workflow
-git clone https://github.com/LinxGem33/Plank-Themes.git $HOME/Development/Workflow/
 
 cd script
 ./bootstrap
