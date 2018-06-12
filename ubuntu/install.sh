@@ -8,7 +8,8 @@ sudo apt install -y git
 # Remove Junk
 # ******************************************************************************
 sudo apt remove -y \
-	aisleriot brasero-* \
+	aisleriot \
+	brasero-* \
 	cheese \
 	five-or-more \
 	four-in-a-row \
@@ -43,9 +44,13 @@ sudo apt remove -y \
 # ******************************************************************************
 # Snaps
 # ******************************************************************************
+
+# Prefer snaps over repos for cross-distro compatibility with other devs
+
 sudo snap install canonical-livepatch
 sudo snap install --classic slack
 sudo snap install docker
+# sudo snap install firefox
 sudo snap install keepassxc
 # sudo snap install nextcloud-client
 # sudo snap install spotify
@@ -59,7 +64,7 @@ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
 # numix theme and icons
-sudo add-apt-repository ppa:numix/ppa
+# sudo add-apt-repository ppa:numix/ppa
 
 sudo apt update
 
