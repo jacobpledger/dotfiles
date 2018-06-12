@@ -29,6 +29,8 @@ sudo apt remove -y \
 	onboard \
 	onboard-data \
 	parole \
+	pidgin \
+	pidgin-libnotify \
 	sgt-puzzles \
 	simple-scan \
 	swell-foop \
@@ -45,7 +47,8 @@ sudo snap install canonical-livepatch
 sudo snap install --classic slack
 sudo snap install docker
 sudo snap install keepassxc
-sudo snap install nextcloud-client
+# sudo snap install nextcloud-client
+# sudo snap install spotify
 
 # ******************************************************************************
 # Add Repos
@@ -67,22 +70,17 @@ sudo apt update
 # install separately so failures don't cascade
 
 sudo apt install -y apt-transport-https # for sublime
+sudo apt install -y emacs
 sudo apt install -y evolution
 sudo apt install -y evolution-ews
 #sudo apt install -y firefox
-<<<<<<< HEAD
-sudo apt install -y numix-gtk-theme
-sudo apt install -y numix-icon-theme-circle
+sudo apt install -y htop
+# sudo apt install -y nextcloud-client
+# sudo apt install -y numix-gtk-theme
+# sudo apt install -y numix-icon-theme-circle
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server 
-sudo apt install -y plank
-=======
-sudo apt install -y emacs
-sudo apt install -y htop
-sudo apt install -y nextcloud-client
-sudo apt install -y numix-gtk-theme
-sudo apt install -y numix-icon-theme-circle
->>>>>>> c57d7547c146649fb70608d2c85d9eadc7b6fc72
+# sudo apt install -y plank
 sudo apt install -y sublime-text
 sudo apt install -y tmux
 sudo apt install -y transmission
