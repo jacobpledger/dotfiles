@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Get the codename of the Ubuntu release for sources that require it.
+. /etc/os-release
+read UBUNTU_VERSION_NAME << "$VERSION"
+
 icon_dir="$HOME/.icons/"
 
 sudo apt install -y git
@@ -8,8 +12,10 @@ sudo apt install -y git
 # Remove Junk
 # ******************************************************************************
 sudo apt remove -y \
+	abiword \
 	aisleriot \
 	brasero-* \
+	catfish \
 	cheese \
 	five-or-more \
 	four-in-a-row \
@@ -66,6 +72,10 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 # numix theme and icons
 # sudo add-apt-repository ppa:numix/ppa
 
+# dropbox
+sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+echo "deb http://linux.dropbox.com/ubuntu $UBUNTU_VERSION_NAME main" | sudo tee /etc/apt/sources.list.d/dropbox.list
+
 sudo apt update
 
 # ******************************************************************************
@@ -74,7 +84,9 @@ sudo apt update
 
 # install separately so failures don't cascade
 
-sudo apt install -y apt-transport-https # for sublime
+sudo apt install -y apt-transport-https  # for sublime
+sudo apt install chrome-gnome-shell  # for gnome shell extension connector
+sudo apt install -y dropbox
 sudo apt install -y emacs
 sudo apt install -y evolution
 sudo apt install -y evolution-ews
@@ -92,6 +104,7 @@ sudo apt install -y transmission
 sudo apt install -y vim
 
 sudo apt autoremove
+
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
