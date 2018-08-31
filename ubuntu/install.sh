@@ -5,6 +5,7 @@
 read UBUNTU_VERSION_NAME << "$VERSION"
 
 icon_dir="$HOME/.icons/"
+mkdir $icon_dir
 
 sudo apt install -y git
 
@@ -23,16 +24,21 @@ sudo apt remove -y \
 	gnome-dictionary \
 	gnome-mahjongg \
 	gnome-mines \
+	gnome-mpv \
 	gnome-nibbles \
 	gnome-robots \
 	gnome-sound-recorder \
 	gnome-sudoku \
+	gnumeric \
+	guvcview \
 	hexchat \
 	hitori \
 	iagno \
 	inkscape \
 	libreoffice \
 	lightsoff \
+	mtpaint \
+	mpv \
 	onboard \
 	onboard-data \
 	parole \
@@ -41,7 +47,9 @@ sudo apt remove -y \
 	sgt-puzzles \
 	simple-scan \
 	swell-foop \
+	sylpheed \
 	tali \
+	totem \
 	thunderbird \
 	ubuntu-mate-welcome \
 	xfburn \
@@ -55,11 +63,14 @@ sudo apt remove -y \
 
 sudo snap install canonical-livepatch
 sudo snap install --classic slack
-sudo snap install docker
+# sudo snap install docker  # no longer maintained
 # sudo snap install firefox
+sudo snap install htop
 sudo snap install keepassxc
-# sudo snap install nextcloud-client
-# sudo snap install spotify
+# sudo snap install libreoffice
+# sudo snap install mpv-casept
+sudo snap install nextcloud-client
+sudo snap install spotify
 
 # ******************************************************************************
 # Add Repos
@@ -90,14 +101,14 @@ sudo apt install -y dropbox
 sudo apt install -y emacs
 sudo apt install -y evolution
 sudo apt install -y evolution-ews
-#sudo apt install -y firefox
-sudo apt install -y htop
+sudo apt install -y firefox
+# sudo apt install -y htop
 # sudo apt install -y nextcloud-client
 # sudo apt install -y numix-gtk-theme
 # sudo apt install -y numix-icon-theme-circle
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server 
-# sudo apt install -y plank
+sudo apt install -y plank
 sudo apt install -y sublime-text
 sudo apt install -y tmux
 sudo apt install -y transmission
