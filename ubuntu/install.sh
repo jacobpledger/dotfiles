@@ -56,24 +56,6 @@ sudo apt remove -y \
 	xfce4-notes
 
 # ******************************************************************************
-# Snaps
-# ******************************************************************************
-
-# Prefer snaps over repos for cross-distro compatibility
-
-sudo snap install canonical-livepatch
-sudo snap install --classic slack
-# sudo snap install docker  # no longer maintained
-# sudo snap install firefox
-sudo snap install htop
-sudo snap install keepassxc
-# sudo snap install libreoffice
-# sudo snap install mpv-casept
-sudo snap install nextcloud-client
-sudo snap install spotify
-sudo snap install tmux
-
-# ******************************************************************************
 # Add Repos
 # ******************************************************************************
 
@@ -116,12 +98,35 @@ sudo apt install -y git
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server 
 sudo apt install -y plank
+sudo apt install -y snapd
 sudo apt install -y sublime-text
 # sudo apt install -y tmux
 sudo apt install -y transmission
 sudo apt install -y vim
 
 sudo apt autoremove
+
+# ******************************************************************************
+# Snaps
+# ******************************************************************************
+
+# Prefer snaps over repos for cross-distro compatibility
+
+sudo snap install canonical-livepatch
+sudo snap install --classic slack
+# sudo snap install docker  # no longer maintained
+# sudo snap install firefox
+sudo snap install htop
+sudo snap install keepassxc
+sudo snap install libreoffice
+# sudo snap install mpv-casept
+sudo snap install nextcloud-client
+sudo snap install spotify
+sudo snap install tmux
+
+# ******************************************************************************
+# Other
+# ******************************************************************************
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
