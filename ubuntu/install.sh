@@ -7,7 +7,7 @@ read UBUNTU_VERSION_NAME << "$VERSION"
 icon_dir="$HOME/.icons/"
 mkdir $icon_dir
 
-sudo apt install -y git
+sudo apt update
 
 # ******************************************************************************
 # Remove Junk
@@ -59,7 +59,7 @@ sudo apt remove -y \
 # Snaps
 # ******************************************************************************
 
-# Prefer snaps over repos for cross-distro compatibility with other devs
+# Prefer snaps over repos for cross-distro compatibility
 
 sudo snap install canonical-livepatch
 sudo snap install --classic slack
@@ -71,10 +71,14 @@ sudo snap install keepassxc
 # sudo snap install mpv-casept
 sudo snap install nextcloud-client
 sudo snap install spotify
+sudo snap install tmux
 
 # ******************************************************************************
 # Add Repos
 # ******************************************************************************
+
+# Some prereqs
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 
 # sublime-text
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -87,6 +91,9 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
 echo "deb http://linux.dropbox.com/ubuntu $UBUNTU_VERSION_NAME main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
 sudo apt update
 
 # ******************************************************************************
@@ -94,14 +101,14 @@ sudo apt update
 # ******************************************************************************
 
 # install separately so failures don't cascade
-
-sudo apt install -y apt-transport-https  # for sublime
-sudo apt install chrome-gnome-shell  # for gnome shell extension connector
+sudo apt install -y chrome-gnome-shell  # for gnome shell extension connector
+sudo apt install -y docker-ce
 sudo apt install -y dropbox
 sudo apt install -y emacs
 sudo apt install -y evolution
 sudo apt install -y evolution-ews
 sudo apt install -y firefox
+sudo apt install -y git
 # sudo apt install -y htop
 # sudo apt install -y nextcloud-client
 # sudo apt install -y numix-gtk-theme
@@ -110,12 +117,11 @@ sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server 
 sudo apt install -y plank
 sudo apt install -y sublime-text
-sudo apt install -y tmux
+# sudo apt install -y tmux
 sudo apt install -y transmission
 sudo apt install -y vim
 
 sudo apt autoremove
-
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
