@@ -1,11 +1,10 @@
 #!/bin/sh
 
 # Get the codename of the Ubuntu release for sources that require it.
-. /etc/os-release
-read UBUNTU_VERSION_NAME << "$VERSION"
+VERSION=`lsb_release -c | cut -f2`
 
 icon_dir="$HOME/.icons/"
-mkdir $icon_dir
+mkdir -p $icon_dir
 
 sudo apt update
 
@@ -71,10 +70,10 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 
 # dropbox
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
-echo "deb http://linux.dropbox.com/ubuntu $UBUNTU_VERSION_NAME main" | sudo tee /etc/apt/sources.list.d/dropbox.list
+echo "deb http://linux.dropbox.com/ubuntu $VERSION main" | sudo tee /etc/apt/sources.list.d/dropbox.list
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $VERSION stable"
 
 sudo apt update
 
@@ -85,6 +84,7 @@ sudo apt update
 # install separately so failures don't cascade
 sudo apt install -y chrome-gnome-shell  # for gnome shell extension connector
 sudo apt install -y docker-ce
+sudo apt install -y docker-compose
 sudo apt install -y dropbox
 sudo apt install -y emacs
 sudo apt install -y evolution
