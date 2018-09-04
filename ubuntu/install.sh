@@ -130,6 +130,3 @@ sudo snap install tmux
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
-
-cd script
-./bootstrap
