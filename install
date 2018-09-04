@@ -82,7 +82,7 @@ sudo apt update
 # ******************************************************************************
 
 # install separately so failures don't cascade
-sudo apt install -y chrome-gnome-shell  # for gnome shell extension connector
+sudo apt install -y clearlooks-phenix
 sudo apt install -y docker-ce
 sudo apt install -y docker-compose
 sudo apt install -y dropbox
@@ -93,7 +93,7 @@ sudo apt install -y firefox
 sudo apt install -y git
 # sudo apt install -y htop
 # sudo apt install -y nextcloud-client
-# sudo apt install -y numix-gtk-theme
+sudo apt install -y numix-gtk-theme
 # sudo apt install -y numix-icon-theme-circle
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server 
