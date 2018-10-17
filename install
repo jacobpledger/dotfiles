@@ -97,7 +97,9 @@ sudo apt install -y numix-gtk-theme
 # sudo apt install -y numix-icon-theme-circle
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server 
+sudo apt install -y openvpn
 sudo apt install -y plank
+sudo apt install -y python3
 sudo apt install -y snapd
 sudo apt install -y sublime-text
 # sudo apt install -y tmux
@@ -117,13 +119,18 @@ sudo snap install htop
 sudo snap install keepassxc
 sudo snap install libreoffice
 # sudo snap install mpv-casept
+sudo snap install mailspring
 sudo snap install nextcloud-client
 sudo snap install spotify
-sudo snap install tmux
+sudo snap install --classic tmux
+sudo snap install vscode
 
 # ******************************************************************************
 # Other
 # ******************************************************************************
+
+# Finish Docker Setup
+sudo usermod -aG docker $(whoami)
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
