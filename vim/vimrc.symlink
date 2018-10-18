@@ -5,3 +5,7 @@ filetype indent plugin on
 
 " show line numbers
 set nu
+
+" Highlight long lines
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%80v.\+/
