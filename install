@@ -14,7 +14,7 @@ sudo apt update
 sudo apt purge -y \
 	abiword \
 	aisleriot \
-	brasero-* \
+	brasero \
 	catfish \
 	cheese \
 	five-or-more \
@@ -34,6 +34,7 @@ sudo apt purge -y \
 	hitori \
 	iagno \
 	inkscape \
+	libreoffice \
 	lightsoff \
 	mtpaint \
 	mpv \
@@ -42,6 +43,7 @@ sudo apt purge -y \
 	parole \
 	pidgin \
 	pidgin-libnotify \
+	qgis \
 	sgt-puzzles \
 	simple-scan \
 	swell-foop \
@@ -97,7 +99,7 @@ sudo apt install -y git
 # sudo apt install -y libreoffice
 sudo apt install -y nextcloud-client
 sudo apt install -y numix-gtk-theme
-# sudo apt install -y numix-icon-theme-circle
+sudo apt install -y numix-icon-theme-circle
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server
 sudo apt install -y openvpn
@@ -105,6 +107,7 @@ sudo apt install -y plank
 sudo apt install -y python3
 sudo apt install -y snapd
 sudo apt install -y sublime-text
+sudo apt install -y steam
 # sudo apt install -y tmux
 sudo apt install -y transmission
 sudo apt install -y vim
