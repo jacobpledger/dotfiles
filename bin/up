@@ -1,7 +1,7 @@
 #!/bin/bash
 
 session=$1
-directory=$HOME/Development/Projects/$session
+directory=$HOME/Workspace/Projects/$session
 
 cd $directory
 docker-compose up -d
@@ -10,5 +10,6 @@ tmux new-session -c $directory -n 'bash' -s $session -A -d
 tmux new-window -t $session -n 'web-test' -c $directory
 tmux new-window -t $session -n 'web' -c $directory
 tmux new-window -t $session -n 'db' -c $directory
+tmux new-window -t $session -n 'worker' -c $directory
 
 tmux attach-session -t $session:0
