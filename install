@@ -19,6 +19,7 @@ sudo apt purge -y \
 	cheese \
 	five-or-more \
 	four-in-a-row \
+	gconf2 \
 	gnome-clocks \
 	gnome-dictionary \
 	gnome-mahjongg \
@@ -42,6 +43,8 @@ sudo apt purge -y \
 	onboard-data \
 	parole \
 	pidgin \
+	pidgin-data \
+	pidgin-otr \
 	pidgin-libnotify \
 	qgis \
 	sgt-puzzles \
@@ -103,12 +106,16 @@ sudo apt install -y openssh-sftp-server
 #sudo apt install -y openvpn
 #sudo apt install -y plank
 sudo apt install -y python-pip
+sudo apt install -y python-future
 sudo apt install -y python3
+sudo apt install -y python3-future
 sudo apt install -y snapd
 sudo apt install -y sublime-text
 sudo apt install -y steam
 sudo apt install -y tmux
 sudo apt install -y transmission
+sudo apt install -y thunderbird
+sudo apt install -y xul-ext-lightning
 sudo apt install -y vim
 sudo apt install -y xscreensaver
 
@@ -119,14 +126,15 @@ sudo apt autoremove
 # ******************************************************************************
 
 sudo snap install canonical-livepatch
-sudo snap install --classic slack
+sudo snap install chromium
 # sudo snap install firefox
 #sudo snap install keepassxc
 # sudo snap install libreoffice
 # sudo snap install mpv-casept
 #sudo snap install mailspring
 #sudo snap install nextcloud-client
-#sudo snap install spotify
+sudo snap install --classic slack
+sudo snap install spotify
 #sudo snap install vscode
 
 # ******************************************************************************
@@ -138,6 +146,9 @@ sudo usermod -aG docker $(whoami)
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
+
+# Fix dropbox
+dropbox stop && dbus-launch dropbox start
 
 cd script
 ./bootstrap
