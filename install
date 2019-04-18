@@ -57,7 +57,8 @@ sudo apt purge -y \
 	thunderbird \
 	ubuntu-mate-welcome \
 	xfburn \
-	xfce4-notes
+	xfce4-notes \
+	xul-ext-ubufox
 
 # ******************************************************************************
 # Add Repos
