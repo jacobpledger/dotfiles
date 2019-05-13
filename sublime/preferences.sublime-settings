@@ -17,7 +17,9 @@
 		100
 	],
 	"scroll_past_end": false,
+	"font_face": "Fira Code",
 	"show_encoding": true,
 	"folder_exclude_patterns": ["*docker-media*",],
-	"theme": "Adaptive.sublime-theme"
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": true
 }

@@ -17,7 +17,6 @@ sudo apt purge -y \
 	brasero \
 	catfish \
 	cheese \
-	firefox \
 	five-or-more \
 	four-in-a-row \
 	gconf2 \
@@ -71,9 +70,6 @@ sudo apt install -y apt-transport-https ca-certificates curl software-properties
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
-# numix theme and icons
-#sudo add-apt-repository ppa:numix/ppa
-
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $VERSION stable"
@@ -85,23 +81,18 @@ sudo apt update
 # ******************************************************************************
 
 # install separately so failures don't cascade
-#sudo apt install -y clearlooks-phenix
 sudo apt install -y docker-ce
 sudo apt install -y docker-compose
 sudo apt install -y nautilus-dropbox
 sudo apt install -y thunar-dropbox-plugin
-# sudo apt install -y emacs
 # sudo apt install -y evolution
 # sudo apt install -y evolution-ews
 # sudo apt install -y firefox
 sudo apt install -y git
 sudo apt install -y htop
-# sudo apt install -y nextcloud-client
-# sudo apt install -y numix-gtk-theme
-# sudo apt install -y numix-icon-theme-circle
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server
-# sudo apt install -y openvpn
+sudo apt install -y openvpn
 sudo apt install -y plank
 sudo apt install -y python-pip
 sudo apt install -y python-future
@@ -109,11 +100,11 @@ sudo apt install -y python3
 sudo apt install -y python3-future
 sudo apt install -y snapd
 sudo apt install -y sublime-text
-# sudo apt install -y steam
+sudo apt install -y steam
 sudo apt install -y tmux
 sudo apt install -y transmission
+sudo apt install -y xfce4-appmenu-plugin
 sudo apt install -y vim
-# sudo apt install -y xscreensaver
 
 sudo apt autoremove
 
@@ -125,8 +116,6 @@ sudo snap install canonical-livepatch
 sudo snap install chromium
 sudo snap install firefox
 sudo snap install hiri
-# sudo snap install libreoffice
-# sudo snap install nextcloud-client
 sudo snap install --classic slack
 sudo snap install spotify
 sudo snap install vlc
