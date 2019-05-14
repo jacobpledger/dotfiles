@@ -117,6 +117,7 @@ sudo snap install chromium
 sudo snap install hiri
 sudo snap install --classic slack
 sudo snap install spotify
+sudo snap install termius-app
 sudo snap install vlc
 sudo snap install --classic vscode
 
