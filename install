@@ -87,7 +87,7 @@ sudo apt install -y nautilus-dropbox
 sudo apt install -y thunar-dropbox-plugin
 # sudo apt install -y evolution
 # sudo apt install -y evolution-ews
-# sudo apt install -y firefox
+sudo apt install -y firefox
 sudo apt install -y git
 sudo apt install -y htop
 sudo apt install -y openssh-server
@@ -114,11 +114,11 @@ sudo apt autoremove
 
 sudo snap install canonical-livepatch
 sudo snap install chromium
-sudo snap install firefox
 sudo snap install hiri
 sudo snap install --classic slack
 sudo snap install spotify
 sudo snap install vlc
+sudo snap install vscode
 
 # ******************************************************************************
 # Other
