@@ -3,9 +3,6 @@
 # Get the codename of the Ubuntu release for sources that require it.
 VERSION=`lsb_release -c | cut -f2`
 
-icon_dir="$HOME/.icons/"
-mkdir -p $icon_dir
-
 sudo apt update
 
 # ******************************************************************************
@@ -107,6 +104,7 @@ sudo apt install -y tmux
 sudo apt install -y transmission
 sudo apt install -y xfce4-appmenu-plugin
 sudo apt install -y vim
+sudo apt install -y zsh
 
 sudo apt autoremove
 
@@ -130,6 +128,9 @@ sudo snap install --classic vscode
 
 # Finish Docker Setup
 sudo usermod -aG docker $(whoami)
+
+# Set zsh as default shell
+sudo usermod -s /usr/bin/zsh $(whoami)
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
