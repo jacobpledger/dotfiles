@@ -6,7 +6,7 @@ directory=$HOME/Workspace/Projects/$session
 cd $directory
 docker-compose up -d
 tmux start-server
-tmux new-session -c $directory -n 'bash' -s $session -A -d
+tmux new-session -c $directory -n 'host' -s $session -A -d
 tmux new-window -t $session -n 'web-test' -c $directory
 tmux new-window -t $session -n 'web' -c $directory
 tmux new-window -t $session -n 'db' -c $directory
