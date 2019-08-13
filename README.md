@@ -1,7 +1,6 @@
 # Jacob's dotfiles
 
-
-## topical
+Forked from https://github.com/holman/dotfiles
 
 Everything's built around topic areas. If you're adding a new area to your
 forked dotfiles — say, "Java" — you can simply add a `java` directory and put
@@ -9,9 +8,7 @@ files in there. Anything with an extension of `.zsh` will get automatically
 included into your shell. Anything with an extension of `.symlink` will get
 symlinked without extension into `$HOME` when you run `script/bootstrap`.
 
-## components
-
-There's a few special files in the hierarchy.
+There are a few special files in the hierarchy.
 
 - **bin/**: Anything in `bin/` will get added to your `$PATH` and be made
   available everywhere.
@@ -27,7 +24,7 @@ There's a few special files in the hierarchy.
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `script/bootstrap`.
 
-## install
+## Installation
 
 Run this:
 

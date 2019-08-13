@@ -99,7 +99,6 @@ sudo apt install -y python3
 sudo apt install -y python3-future
 sudo apt install -y snapd
 sudo apt install -y sublime-text
-sudo apt install -y steam
 sudo apt install -y tmux
 sudo apt install -y transmission
 sudo apt install -y xfce4-appmenu-plugin
