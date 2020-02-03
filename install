@@ -132,8 +132,19 @@ sudo usermod -s /usr/bin/zsh $(whoami)
 # rust
 curl https://sh.rustup.rs -sSf | sh
 
+# Get 1Password
+curl -fsSL https://cache.agilebits.com/dist/1P/op/pkg/v0.8.0/op_linux_arm_v0.8.0.zip -o ./op_linux.zip
+unzip op_linux_arm_v0.8.0.zip
+gpg --receive-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
+gpg --verify op.sig op
+mv op_linux_arm_v0.8.0/op $HOME/bin/
+op update
+
 # Enable Livepatch
 sudo canonical-livepatch enable <token>
 
 cd script
 ./bootstrap
+
+# Set zsh as default shell
+sudo usermod -s /usr/bin/zsh $(whoami)

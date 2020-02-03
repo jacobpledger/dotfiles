@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $1 == 'v' ]; then
-    docker-compose exec web bash -c "python src/manage.py test"
+    docker-compose exec web bash -c "python src/manage.py test --logging-clear-handlers"
 else
-    docker-compose exec web bash -c "python manage.py test"
+    docker-compose exec web bash -c "python manage.py test --logging-clear-handlers"
 fi

@@ -138,8 +138,9 @@ install_dotfiles () {
 }
 
 link_binaries () {
-  for src in $DOTFILES_ROOT/bin; do
-    dst="$HOME/$(basename "${src%.*}")"
+  mkdir -p $HOME/bin
+  for src in $DOTFILES_ROOT/bin/*; do
+    dst="$HOME/bin/$(basename $src)"
     link_file "$src" "$dst"
   done
 }
