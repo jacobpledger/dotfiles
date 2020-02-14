@@ -64,15 +64,19 @@ sudo apt purge -y \
 # ******************************************************************************
 
 # Some prereqs
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg
 
-# sublime-text
+# Sublime Text (sublime-text)
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
-# Docker
+# Docker (docker-ce, docker-compose)
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $VERSION stable"
+
+# Google Cloud (google-cloud-sdk)
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 
 sudo apt update
 
@@ -86,6 +90,7 @@ sudo apt install -y docker-compose
 # sudo apt install -y evolution
 # sudo apt install -y evolution-ews
 sudo apt install -y git
+sudo apt install -y google-cloud-sdk
 sudo apt install -y htop
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server
@@ -110,14 +115,11 @@ sudo apt autoremove
 # ******************************************************************************
 
 sudo snap install canonical-livepatch
-sudo snap install chromium
 sudo snap install firefox
 sudo snap install hiri
+sudo snap install libreoffice
 sudo snap install --classic slack
 sudo snap install spotify
-sudo snap install termius-app
-sudo snap install vlc
-sudo snap install --classic vscode
 
 # ******************************************************************************
 # Other
@@ -131,14 +133,6 @@ sudo usermod -s /usr/bin/zsh $(whoami)
 
 # rust
 curl https://sh.rustup.rs -sSf | sh
-
-# Get 1Password
-curl -fsSL https://cache.agilebits.com/dist/1P/op/pkg/v0.8.0/op_linux_arm_v0.8.0.zip -o ./op_linux.zip
-unzip op_linux_arm_v0.8.0.zip
-gpg --receive-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
-gpg --verify op.sig op
-mv op_linux_arm_v0.8.0/op $HOME/bin/
-op update
 
 # Enable Livepatch
 sudo canonical-livepatch enable <token>
