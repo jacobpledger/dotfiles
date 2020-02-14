@@ -135,7 +135,7 @@ sudo usermod -s /usr/bin/zsh $(whoami)
 curl https://sh.rustup.rs -sSf | sh
 
 # Enable Livepatch
-sudo canonical-livepatch enable <token>
+# sudo canonical-livepatch enable <token>
 
 cd script
 ./bootstrap
