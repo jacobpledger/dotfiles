@@ -7,9 +7,6 @@ cd $directory
 docker-compose up -d
 tmux start-server
 tmux new-session -c $directory -n 'host' -s $session -A -d
-tmux new-window -t $session -n 'web-test' -c $directory
-tmux new-window -t $session -n 'web' -c $directory
-tmux new-window -t $session -n 'db' -c $directory
-tmux new-window -t $session -n 'worker' -c $directory
+tmux new-window -t $session -c $directory
 
 tmux attach-session -t $session:0
