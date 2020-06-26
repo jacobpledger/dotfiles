@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# ******************************************************************************
+# NOTE: This is meant to be run on *my* Xubuntu system. It might accidentally
+# ruin a Gnome-shell based environment. I strongly suggest auditing the packages
+# before use.
+# ******************************************************************************
+
 # Get the codename of the Ubuntu release for sources that require it.
 VERSION=`lsb_release -c | cut -f2`
 
@@ -20,6 +26,7 @@ sudo apt purge -y \
 	gconf2 \
 	gnome-clocks \
 	gnome-dictionary \
+	gnome-fonts \
 	gnome-mahjongg \
 	gnome-mines \
 	gnome-mpv \
@@ -27,6 +34,7 @@ sudo apt purge -y \
 	gnome-robots \
 	gnome-sound-recorder \
 	gnome-sudoku \
+	gnome-terminal \
 	gnumeric \
 	guvcview \
 	hexchat \
@@ -63,7 +71,7 @@ sudo apt purge -y \
 # ******************************************************************************
 
 # Some prereqs
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg
+sudo apt install -y apt-transport-https ca-certificates software-properties-common gnupg
 
 # Docker (docker-ce, docker-compose)
 wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -80,7 +88,7 @@ echo "deb [arch=amd64] https://qgis.org/ubuntu/ $VERSION main" | sudo tee -a /et
 sudo apt update
 
 # ******************************************************************************
-# install packages
+# Install packages
 # ******************************************************************************
 
 # install separately so failures don't cascade
@@ -91,6 +99,7 @@ sudo apt install -y docker-compose
 sudo apt install -y git
 sudo apt install -y google-cloud-sdk
 sudo apt install -y htop
+sudo apt install -y ntp  # network time sync
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server
 sudo apt install -y python-pip
@@ -98,20 +107,19 @@ sudo apt install -y python-future
 sudo apt install -y python3
 sudo apt install -y python3-future
 sudo apt install -y snapd
-sudo apt install -y sublime-text
 sudo apt install -y tmux
 sudo apt install -y transmission
 sudo apt install -y xfce4-appmenu-plugin
 sudo apt install -y vim
-sudo apt install -y zsh
+sudo apt install -y zsh  # Use zsh for Mac compatibility
 
+# Now clean up
 sudo apt autoremove
 
-# ******************************************************************************
+# *****************************************************************************
 # Snaps
-# ******************************************************************************
+# *****************************************************************************
 
-sudo snap install canonical-livepatch
 sudo snap install code
 sudo snap install firefox
 sudo snap install hiri
@@ -129,11 +137,12 @@ sudo usermod -aG docker $(whoami)
 # Set zsh as default shell
 sudo usermod -s /usr/bin/zsh $(whoami)
 
-# rust
+# Rust
 curl https://sh.rustup.rs -sSf | sh
 
-# Enable Livepatch
-# sudo canonical-livepatch enable <token>
+# ******************************************************************************
+# Continue and install symlinks and config files
+# ******************************************************************************
 
 cd script
 ./bootstrap
