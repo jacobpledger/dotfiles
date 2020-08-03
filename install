@@ -20,7 +20,6 @@ sudo apt purge -y \
 	brasero \
 	catfish \
 	cheese \
-	firefox \
 	five-or-more \
 	four-in-a-row \
 	gconf2 \
@@ -41,7 +40,6 @@ sudo apt purge -y \
 	hitori \
 	iagno \
 	inkscape \
-	libreoffice \
 	lightsoff \
 	mtpaint \
 	mpv \
@@ -77,6 +75,14 @@ sudo apt install -y apt-transport-https ca-certificates software-properties-comm
 wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $VERSION stable"
 
+# VS Code
+wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+
+# Spotify
+wget -qO - https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
 # Google Cloud (google-cloud-sdk)
 wget -qO - https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
@@ -92,13 +98,15 @@ sudo apt update
 # ******************************************************************************
 
 # install separately so failures don't cascade
+sudo apt install -y audacity
+sudo apt install -y code
 sudo apt install -y docker-ce
 sudo apt install -y docker-compose
-# sudo apt install -y evolution
-# sudo apt install -y evolution-ews
+sudo apt install -y firefox
 sudo apt install -y git
 sudo apt install -y google-cloud-sdk
 sudo apt install -y htop
+sudo apt install -y libreoffice
 sudo apt install -y ntp  # network time sync
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server
@@ -107,6 +115,7 @@ sudo apt install -y python-future
 sudo apt install -y python3
 sudo apt install -y python3-future
 sudo apt install -y snapd
+sudo apt install -y spotify-client
 sudo apt install -y tmux
 sudo apt install -y transmission
 sudo apt install -y xfce4-appmenu-plugin
@@ -120,12 +129,8 @@ sudo apt autoremove
 # Snaps
 # *****************************************************************************
 
-sudo snap install code
-sudo snap install firefox
 sudo snap install hiri
-sudo snap install libreoffice
 sudo snap install --classic slack
-sudo snap install spotify
 
 # ******************************************************************************
 # Other
