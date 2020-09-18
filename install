@@ -1,9 +1,8 @@
 #!/bin/sh
 
 # ******************************************************************************
-# NOTE: This is meant to be run on *my* Xubuntu system. It might accidentally
-# ruin a Gnome-shell based environment. I strongly suggest auditing the packages
-# before use.
+# NOTE: This is meant to be run on *my* system. It might accidentally
+# ruin yours. I strongly suggest auditing the packages before use.
 # ******************************************************************************
 
 # Get the codename of the Ubuntu release for sources that require it.
@@ -25,7 +24,6 @@ sudo apt purge -y \
 	gconf2 \
 	gnome-clocks \
 	gnome-dictionary \
-	gnome-fonts \
 	gnome-mahjongg \
 	gnome-mines \
 	gnome-mpv \
@@ -33,7 +31,6 @@ sudo apt purge -y \
 	gnome-robots \
 	gnome-sound-recorder \
 	gnome-sudoku \
-	gnome-terminal \
 	gnumeric \
 	guvcview \
 	hexchat \
@@ -58,7 +55,6 @@ sudo apt purge -y \
 	totem \
 	thunderbird \
 	ubuntu-mate-welcome \
-	vlc \
 	xfburn \
 	xfce4-dict \
 	xfce4-notes \
@@ -68,28 +64,24 @@ sudo apt purge -y \
 # Add Repos
 # ******************************************************************************
 
-# Some prereqs
+# Some prerequisites
 sudo apt install -y apt-transport-https ca-certificates software-properties-common gnupg
 
 # Docker (docker-ce, docker-compose)
 wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $VERSION stable"
 
-# VS Code
-wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-
-# Spotify
-wget -qO - https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+# Sublime Text & Sublime Merge
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
 # Google Cloud (google-cloud-sdk)
 wget -qO - https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 
-# QGIS
-wget -qO - https://qgis.org/downloads/qgis-2019.gpg.key | sudo apt-key add -
-echo "deb [arch=amd64] https://qgis.org/ubuntu/ $VERSION main" | sudo tee -a /etc/apt/sources.list
+# Brave
+wget -qO - https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
 sudo apt update
 
@@ -99,23 +91,21 @@ sudo apt update
 
 # install separately so failures don't cascade
 sudo apt install -y audacity
-sudo apt install -y code
+sudo apt install -y brave-browser
 sudo apt install -y docker-ce
 sudo apt install -y docker-compose
-sudo apt install -y firefox
+sudo apt install -y flatpak
 sudo apt install -y git
 sudo apt install -y google-cloud-sdk
 sudo apt install -y htop
-sudo apt install -y libreoffice
 sudo apt install -y ntp  # network time sync
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server
 sudo apt install -y python-pip
-sudo apt install -y python-future
 sudo apt install -y python3
-sudo apt install -y python3-future
 sudo apt install -y snapd
-sudo apt install -y spotify-client
+sudo apt install -y sublime-merge
+sudo apt install -y sublime-text
 sudo apt install -y tmux
 sudo apt install -y transmission
 sudo apt install -y xfce4-appmenu-plugin
@@ -129,8 +119,26 @@ sudo apt autoremove
 # Snaps
 # *****************************************************************************
 
+sudo snap install bitwarden
+sudo snap install --classic code
 sudo snap install hiri
 sudo snap install --classic slack
+sudo snap install spotify
+
+
+# *****************************************************************************
+# Flatpaks
+# *****************************************************************************
+
+flatpak install flathub org.glimpse_editor.Glimpse
+flatpak install flathub com.gitlab.newsflash
+flatpak install flathub org.libreoffice.LibreOffice
+
+# ******************************************************************************
+# GNOME Settings
+# ******************************************************************************
+gsettings set org.gnome.mutter workspaces-only-on-primary false
+
 
 # ******************************************************************************
 # Other
@@ -151,3 +159,5 @@ curl https://sh.rustup.rs -sSf | sh
 
 cd script
 ./bootstrap
+
+# ln -s sublime/Python.sublime-settings.symlnk /home/jacob/.config/sublime-text-3/Packages/User/Python.sublime-settings
