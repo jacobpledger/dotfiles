@@ -145,9 +145,19 @@ link_binaries () {
   done
 }
 
+link_desktop_files () {
+  for src in $DOTFILES_ROOT/desktop_files/*; do
+    dst="/usr/share/applications/$(basename $src)"
+    rm -f $dst
+    # link_file "$src" "$dst"
+    cp $src $dst
+  done
+}
+
 setup_gitconfig
 install_dotfiles
 link_binaries
+link_desktop_files
 
 echo ''
 echo '  All installed!'

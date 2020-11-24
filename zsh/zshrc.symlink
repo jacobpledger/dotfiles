@@ -40,7 +40,22 @@ done
 
 unset config_files
 
+# -------------------------
+# SSH-Forwarding for Docker
+# -------------------------
 # Start an ssh-agent
 eval $(ssh-agent -s) 2>&1 > /dev/null
 # Add Github key to the ssh-agent to forward to Docker
 ssh-add -q ~/.ssh/github_rsa
+
+# ----------------------
+# Terminal Customization
+# ----------------------
+echo -n "\033]0;${USER}@${HOST}\007"
+case $TERM in
+  xterm*)
+    precmd () {print -Pn "\e]0;${USER}@${HOST}   %~\a"}
+    ;;
+esac
+# Set prompt to ; for copy/paste easiness
+PROMPT='; '
