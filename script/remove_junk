@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# ******************************************************************************
+# NOTE: This is meant to be run on *my* system. It might accidentally
+# ruin yours. I strongly suggest auditing the packages before use.
+# ******************************************************************************
+
+sudo apt update
+sudo apt purge -y \
+	abiword \
+	aisleriot \
+	brasero \
+	catfish \
+	cheese \
+	five-or-more \
+	four-in-a-row \
+	gconf2 \
+	gnome-clocks \
+	gnome-dictionary \
+	gnome-mahjongg \
+	gnome-mines \
+	gnome-nibbles \
+	gnome-robots \
+	gnome-sound-recorder \
+	gnome-sudoku \
+	gnumeric \
+	guvcview \
+	hexchat \
+	hitori \
+	iagno \
+	inkscape \
+	lightsoff \
+	mtpaint \
+	onboard \
+	onboard-data \
+	parole \
+	pidgin \
+	pidgin-data \
+	pidgin-otr \
+	pidgin-libnotify \
+	sgt-puzzles \
+	simple-scan \
+	swell-foop \
+	sylpheed \
+	tali \
+	totem \
+	thunderbird \
+	ubuntu-mate-welcome \
+	xfburn \
+	xfce4-dict \
+	xfce4-notes \
+	xul-ext-ubufox

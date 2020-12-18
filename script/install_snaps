@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# *****************************************************************************
+# Install Snaps
+# *****************************************************************************
+
+sudo snap install 1password
+sudo snap install bitwarden
+sudo snap install --classic code
+sudo snap install hiri
+sudo snap install --classic slack
+sudo snap install spotify

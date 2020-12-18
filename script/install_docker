@@ -1,0 +1,8 @@
+#!/bin/sh
+VERSION=`lsb_release -c | cut -f2`
+wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $VERSION stable"
+sudo apt update
+sudo apt install -y docker-ce
+sudo apt install -y docker-compose
+sudo usermod -aG docker $(whoami)

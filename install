@@ -5,170 +5,20 @@
 # ruin yours. I strongly suggest auditing the packages before use.
 # ******************************************************************************
 
-# Get the codename of the Ubuntu release for sources that require it.
-VERSION=`lsb_release -c | cut -f2`
-
-sudo apt update
-
-# ******************************************************************************
-# Remove Junk
-# ******************************************************************************
-sudo apt purge -y \
-	abiword \
-	aisleriot \
-	brasero \
-	catfish \
-	cheese \
-	five-or-more \
-	four-in-a-row \
-	gconf2 \
-	gnome-clocks \
-	gnome-dictionary \
-	gnome-mahjongg \
-	gnome-mines \
-	gnome-mpv \
-	gnome-nibbles \
-	gnome-robots \
-	gnome-sound-recorder \
-	gnome-sudoku \
-	gnumeric \
-	guvcview \
-	hexchat \
-	hitori \
-	iagno \
-	inkscape \
-	lightsoff \
-	mtpaint \
-	mpv \
-	onboard \
-	onboard-data \
-	parole \
-	pidgin \
-	pidgin-data \
-	pidgin-otr \
-	pidgin-libnotify \
-	sgt-puzzles \
-	simple-scan \
-	swell-foop \
-	sylpheed \
-	tali \
-	totem \
-	thunderbird \
-	ubuntu-mate-welcome \
-	xfburn \
-	xfce4-dict \
-	xfce4-notes \
-	xul-ext-ubufox
-
-# ******************************************************************************
-# Add Repos
-# ******************************************************************************
-
 # Some prerequisites
 sudo apt install -y apt-transport-https ca-certificates software-properties-common gnupg
 
-# Brave
-wget -qO - https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
-echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+script/remove_junk
+script/install_packages
+script/install_docker
+script/install_brave
+script/install_rust
+script/install_zsh
+sudo apt -y autoremove
+sudo apt -y upgrade
+script/install_snaps
 
-# Docker (docker-ce, docker-compose)
-wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $VERSION stable"
-
-# Google Cloud (google-cloud-sdk)
-wget -qO - https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-
-# Spotify
-curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-
-# Sublime Text & Sublime Merge
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-
-# VS Code
-wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-
-sudo apt-key --keyring /usr/share/keyrings/1password.gpg adv --keyserver keyserver.ubuntu.com --recv-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
-echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password.gpg] https://downloads.1password.com/linux/debian edge main' | sudo tee /etc/apt/sources.list.d/1password.list
-
-sudo apt update
-
-# ******************************************************************************
-# Install packages
-# ******************************************************************************
-
-# install separately so failures don't cascade
-sudo apt install -y audacity
-sudo apt install -y brave-browser
-sudo apt install -y docker-ce
-sudo apt install -y docker-compose
-sudo apt install -y flatpak
-sudo apt install -y fonts-firacode
-sudo apt install -y git
-sudo apt install -y google-cloud-sdk
-sudo apt install -y htop
-sudo apt install -y ntp  # network time sync
-sudo apt install -y openssh-server
-sudo apt install -y openssh-sftp-server
-sudo apt install -y python-pip
-sudo apt install -y python3
-sudo apt install -y snapd
-sudo apt install -y sublime-merge
-sudo apt install -y sublime-text
-sudo apt install -y tmux
-sudo apt install -y transmission
-sudo apt install -y xfce4-appmenu-plugin
-sudo apt install -y vim
-sudo apt install -y zsh  # Use zsh for Mac compatibility
-
-# Now clean up
-sudo apt autoremove
-
-# *****************************************************************************
-# Snaps
-# *****************************************************************************
-
-sudo snap install bitwarden
-sudo snap install --classic code
-sudo snap install hiri
-sudo snap install --classic slack
-sudo snap install spotify
-
-
-# *****************************************************************************
-# Flatpaks
-# *****************************************************************************
-
-flatpak install flathub org.glimpse_editor.Glimpse
-flatpak install flathub com.gitlab.newsflash
-flatpak install flathub org.libreoffice.LibreOffice
-
-# ******************************************************************************
-# GNOME Settings
-# ******************************************************************************
-gsettings set org.gnome.mutter workspaces-only-on-primary false
-
-
-# ******************************************************************************
-# Other
-# ******************************************************************************
-
-# Finish Docker Setup
-sudo usermod -aG docker $(whoami)
-
-# Set zsh as default shell
-sudo usermod -s /usr/bin/zsh $(whoami)
-
-# Rust
-curl https://sh.rustup.rs -sSf | sh
-
-# ******************************************************************************
 # Continue and install symlinks and config files
-# ******************************************************************************
-
 cd script
 ./bootstrap
 
