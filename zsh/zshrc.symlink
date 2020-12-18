@@ -1,5 +1,5 @@
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$(readlink -f $0)/..
+export ZSH=$(dirname $(readlink -f $HOME/.zshrc))/..
 
 # stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but

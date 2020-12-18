@@ -1,3 +1,4 @@
+" enable syntax highlighting
 syntax on
 
 " Wrap gitcommit file types at the appropriate length
@@ -5,6 +6,7 @@ filetype indent plugin on
 
 " show line numbers
 set nu
+
 
 " Highlight long lines
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
