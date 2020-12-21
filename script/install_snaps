@@ -4,8 +4,7 @@
 # Install Snaps
 # *****************************************************************************
 
-sudo snap install 1password
-sudo snap install bitwarden
+sudo snap install --edge 1password
 sudo snap install --classic code
 sudo snap install hiri
 sudo snap install --classic slack
