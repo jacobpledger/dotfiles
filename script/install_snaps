@@ -9,4 +9,3 @@ sudo snap install --classic code
 sudo snap install --classic slack
 ln -s /snap/slack/latest/usr/share/pixmaps/slack.png  /usr/share/pixmaps/slack.png  # fix missing Slack icon
 sudo snap install spotify
-sudo snap install teams
