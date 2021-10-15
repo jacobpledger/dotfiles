@@ -12,6 +12,7 @@ sudo apt purge -y \
 	brasero \
 	catfish \
 	cheese \
+	firefox \
 	five-or-more \
 	four-in-a-row \
 	gconf2 \
