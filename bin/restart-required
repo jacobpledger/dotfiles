@@ -2,17 +2,15 @@
 
 restart-required () {
 	FILE=/var/run/reboot-required
-	if test -f "$FILE"; then
-		return $(true)
+	if test -f $FILE; then
+		return 0
 	else
-		return $(false)
+		return 1
 	fi
 }
 
-if [[ $(restart-required) ]]; then
-	echo "Restart required."
+if [[ restart-required ]]; then
+	cat /var/run/reboot-required
 else
 	echo "A restart is not necessary at this time."
 fi
-
-# restart-required
