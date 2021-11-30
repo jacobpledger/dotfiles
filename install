@@ -11,9 +11,7 @@ sudo apt install -y apt-transport-https ca-certificates software-properties-comm
 script/remove_junk
 script/install_packages
 script/install_docker
-script/install_brave
 script/install_rust
-script/install_zsh
 sudo apt -y autoremove
 sudo apt -y upgrade
 script/install_snaps

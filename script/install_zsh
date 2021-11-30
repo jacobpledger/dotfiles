@@ -1,4 +1,0 @@
-#!/bin/sh
-sudo apt install -y zsh
-# Set zsh as default shell
-sudo usermod -s /usr/bin/zsh $(whoami)

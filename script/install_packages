@@ -6,13 +6,12 @@
 
 # install separately so failures don't cascade
 sudo apt install -y bluebird-gtk-theme
+sudo apt install -y emacs
 sudo apt install -y evolution  # Email client
 sudo apt install -y evolution-ews  # For MS Exchange
-sudo apt install -y feedreader  # RSS Reader for managing dependencies
 sudo apt install -y font-manager
 sudo apt install -y fonts-firacode
 sudo apt install -y git
-sudo apt install -y google-cloud-sdk
 sudo apt install -y htop
 sudo apt install -y ncdu  # NCurses Disk Usage
 sudo apt install -y ntp  # network time sync

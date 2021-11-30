@@ -8,11 +8,9 @@
 sudo apt update
 sudo apt purge -y \
 	abiword \
-	aisleriot \
 	brasero \
 	catfish \
 	cheese \
-	firefox \
 	five-or-more \
 	four-in-a-row \
 	gconf2 \
@@ -48,6 +46,5 @@ sudo apt purge -y \
 	thunderbird \
 	ubuntu-mate-welcome \
 	xfburn \
-	xfce4-dict \
 	xfce4-notes \
 	xul-ext-ubufox
