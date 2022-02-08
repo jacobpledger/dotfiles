@@ -5,12 +5,14 @@ if [[ -d $1 ]]; then
     pushd $dir
 	for filename in *.flac; do
 		ffmpeg -nostdin -i ${filename} -c:a alac -c:v copy ${filename%.flac}.m4a
+		# /usr/local/bin/ffmpeg -nostdin -i "${filename}" -c:a alac -c:v copy ${filename%.flac}.m4a
 	done
 	popd
 
 elif [[ -f $1 ]]; then
 	filename=$1
     ffmpeg -nostdin -i ${filename} -c:a alac -c:v copy ${filename%.flac}.m4a
+	# /usr/local/bin/ffmpeg -nostdin -i "${filename}" -c:a alac -c:v copy ${filename%.flac}.m4a
 else
     echo "$1 is invalid."
     exit 1
