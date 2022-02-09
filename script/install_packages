@@ -15,6 +15,7 @@ sudo apt install -y git
 sudo apt install -y htop
 sudo apt install -y ncdu  # NCurses Disk Usage
 sudo apt install -y ntp  # network time sync
+sudo apt install -y openfortivpn
 sudo apt install -y openssh-server
 sudo apt install -y openssh-sftp-server
 sudo apt install -y python-pip
@@ -23,6 +24,6 @@ sudo apt install -y snapd
 sudo apt install -y tmux  # Terminal multiplexer
 sudo apt install -y transmission  # Torrent client
 sudo apt install -y xfce4-appmenu-plugin  # Menu bar in panel
-sudo apt install -y vim  # Command-line editing
+sudo apt install -y vim
 sudo apt install -y webcamoid  # Webcam tool
-sudo apt install -y wavemon  # Wifi monitoring tool
+sudo apt install -y wavemon  # Wifi signal monitoring tool
