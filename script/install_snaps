@@ -6,6 +6,8 @@
 
 sudo snap install bitwarden 
 sudo snap install --classic code
+sudo snap install --classic node  # For pyright
 sudo snap install --classic slack
-ln -s /snap/slack/latest/usr/share/pixmaps/slack.png  /usr/share/pixmaps/slack.png  # fix missing Slack icon
+ln -s /snap/slack/current/usr/share/pixmaps/slack.png  /usr/share/pixmaps/slack.png  # fix missing Slack icon
 sudo snap install spotify
+ln -s /snap/spotify/current/usr/share/spotify/icons/spotify-linux-512.png /usr/share/pixmaps/spotify.png  # fix missing Spotify icon
