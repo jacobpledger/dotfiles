@@ -21,3 +21,6 @@ cd script
 ./bootstrap
 
 # ln -s sublime/Python.sublime-settings.symlnk /home/jacob/.config/sublime-text-3/Packages/User/Python.sublime-settings
+# ln -s "sublime_text/Default (Linux).sublime-keymap" "/home/jacob/.config/sublime-text/Packages/User/Default (Linux).sublime-keymap"
+# ln -s "sublime_text/Python.sublime-settings" "/home/jacob/.config/sublime-text/Packages/User/Python.sublime-settings"
+# ln -s "sublime_text/Preferences.sublime-settings" "/home/jacob/.config/sublime-text/Packages/User/Preferences.sublime-settings"
