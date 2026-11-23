@@ -1,19 +1,43 @@
-;; Package Control
-;; ---------------
+;;; Package --- Summary:
+;;; Commentary:
+;;; Code:
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
-
-;; Packages
-;; --------
-(require 'multiple-cursors)
 (require 'use-package)
 
-;; Use company-mode completion in all buffers
-(add-hook 'after-init-hook 'global-company-mode)
+;; Completions
+(use-package company
+  :ensure t
+  :config
+  ;; Use company-mode completion in all buffers
+  (add-hook 'after-init-hook 'global-company-mode))
+
+
+(use-package multiple-cursors
+  :ensure t)
+
+(use-package buffer-move
+  :ensure t)
+
+(setq ivy-use-virtual-buffers t)
+(setq ivy-count-format "(%d/%d) ")
+
+;; ;; LSP
+;; (use-package lsp-mode
+;;   :init
+;;   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+;;          (python-mode . lsp)
+;;          ;; if you want which-key integration
+;;          (lsp-mode . lsp-enable-which-key-integration))
+;;   :commands lsp)
+
+
+;; Python
 
 ;; Hook the Pyright LSP to Python mode
 (use-package lsp-pyright
@@ -26,17 +50,26 @@
 ;;	  (setq python-shell-interpreter "python3")
 ;;	  (setq dap-python-executable "python3")
 	  )
+  :config
+  (setq lsp-pyright-use-library-code-for-types t) ;; set this to nil if getting too many false positive type errors
   :hook (python-mode . (lambda ()
 			 (require 'lsp-pyright)
 			 (lsp-deferred))))  ; or lsp
+
+;; Ruff
+(use-package flymake-ruff
+  :ensure t
+  :hook (python-mode . flymake-ruff-load))
+(use-package ruff-format)
+(add-hook 'python-mode-hook 'ruff-format-on-save-mode
 
 
 ;; Custom Functions
 ;; ----------------
 (defun revert-all-buffers ()
   "Refresh all open file buffers without confirmation.
-Buffers in modified (not yet saved) state in emacs will not be reverted. They
-will be reverted though if they were modified outside emacs.
+Buffers in modified (not yet saved) state in Emacs will not be reverted.  They
+will be reverted though if they were modified outside Emacs.
 Buffers visiting files which do not exist any more or are no longer readable
 will be killed."
   (interactive)
@@ -73,6 +106,12 @@ will be killed."
   (forward-line -1)
   (indent-according-to-mode))
 
+(defun ansible-deploy ()
+  "Run ansible to deploy project."
+  (interactive)
+  (shell-command "ansible-playbook playbooks/deploy.yaml --limit dev -e git_ref=dev"))
+  
+
 
 ;; Keybindings
 ;; -----------
@@ -108,7 +147,7 @@ will be killed."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(company company-anaconda yaml-mode magit pyenv-mode-auto pyenv-mode dap-mode flycheck python-black python-mode use-package lsp-pyright multiple-cursors))
+   '(company company-anaconda yaml-mode magit pyenv-mode-auto pyenv-mode dap-mode python-black python-mode use-package lsp-pyright multiple-cursors))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
